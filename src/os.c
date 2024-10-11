@@ -83,7 +83,7 @@ void dissable_interrupts() {
  * Sets the priority of PenSV interrupt to the lowest
  * This is because the PendSV interrupt handler is used for job scheduling
  */
-void set_pensv_priority_to_low() {
+void set_pendsv_priority_to_low() {
 
 	//  Set the Priority of the PendSV interrupt to minimum
 	*(unsigned long int volatile *) 0xE000ED20 |= (0xFFU << 16);
@@ -175,7 +175,7 @@ static void add_to_execution_queue(tcb_ *tcb) {
  */
 void system_init() {
 	dissable_interrupts();
-	set_pensv_priority_to_low();
+	set_pendsv_priority_to_low();
 	setup_systick_timer();
 
 	total_tasks = 0;
